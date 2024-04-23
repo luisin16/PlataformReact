@@ -17,6 +17,17 @@ export const Users = () => {
     }).catch(err => console.log(err))
   }, [])
 
+  const handleDelete = (id) => {
+    axios.delete('http://localhost:8081/auth/delete_users/'+id)
+    .then(result => {
+      if(result.data.Status){
+        window.location.reload()
+      } else {
+        alert(result.data.Error)
+      }
+    })
+  }
+
   return (
     <div>
         <Navbar />

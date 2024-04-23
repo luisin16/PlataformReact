@@ -1,0 +1,44 @@
+.navbar {
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Ajusta según sea necesario */
+    font-size: 16px; /* Ajusta según sea necesario */
+}
+
+.navbar a {
+    color: black;
+    text-decoration: none;
+    margin: 0 45px;
+}
+
+.navbar a.active {
+    color: #6f42c1;
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    /* Estilos del icono de hamburguesa, ajusta según sea necesario */
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        font-size: 14px; /* Ajusta según sea necesario */
+    }
+
+    .navbar a {
+        margin: 10px 0;
+    }
+
+    .menu-toggle {
+        display: block;
+        /* Estilos del icono de hamburguesa, ajusta según sea necesario */
+    }
+
+
+}

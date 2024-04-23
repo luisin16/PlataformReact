@@ -74,5 +74,19 @@ router.post("/adminlogin",(req, res) => {
     })
   })
 
+  router.delete('/delete_users/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "delete from users where id = ?"
+    con.query(sql,[id], (err, result) => {
+      if(err) return res.json({Status: false, Error: "Query Error"+err})
+      return res.json({Status: true, Result: result})
+  })
+})
+
+router.get('/cerrar', (req, res) => {
+  res.clearCookie('token')
+  return res.json({Status: true})
+})
+
 
 export { router as adminRouter };
