@@ -43,6 +43,36 @@ router.post("/adminlogin",(req, res) => {
     })
   })
 
+  router.get('/users', (req, res) => {
+    const sql = "SELECT * FROM users";
+    con.query(sql, (err, result) => {
+      if(err) return res.json({Status: false, Error: "Query Error"})
+      return res.json({Status: true, Result: result})
+      })
+  })
+
+  router.get('/users/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "SELECT * FROM users WHERE id = ?";
+    con.query(sql, [id], (err, result) => {
+      if(err) return res.json({Status: false, Error: "Query Error"})
+      return res.json({Status: true, Result: result})
+      })
+  })
+
+  router.put('/edit_users/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = `UPDATE users set name= ?, email= ?, address= ? where id= ?`
+    const values = [
+      req.body.name,
+      req.body.email,
+      req.body.address
+    ]
+    con.query(sql,[...values, id], (err, result) => {
+      if(err) return res.json({Status: false, Error: "Query Error"})
+      return res.json({Status: true, Result: result})
+    })
+  })
 
 
 export { router as adminRouter };
