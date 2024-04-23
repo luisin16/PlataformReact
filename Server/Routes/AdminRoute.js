@@ -26,5 +26,23 @@ router.post("/adminlogin",(req, res) => {
     });
   });
 
+  router.post('/add_users', (req, res) => {
+    const sql = 'INSERT INTO users (`name`, `email`, `password`, `address`) VALUES (?)';
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
+      if(err) return res.json({Status: false, Error: "Query Error"})
+      const values = [
+        req.body.name,
+        req.body.email,
+        hash,
+        req.body.address
+      ]
+      con.query(sql, [values], (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"})
+        return res.json({Status: true})
+      })
+    })
+  })
+
+
 
 export { router as adminRouter };
