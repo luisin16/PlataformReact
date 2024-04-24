@@ -29,7 +29,7 @@ const AddUsers = () => {
     <div><Navbar/>
     <div className='d-flex justify-content-center align-items-center vh-95'>
     <div className='p-3 rounded w-25 border'>
-        <h2>Añadir Usuarios</h2>
+        <h2>Añadir a un nuevo usuario:</h2>
         <form className='row g-1' onSubmit={handleSubmit}>
           <div className='col-12'>  
             <label for="inputName">Name</label>      

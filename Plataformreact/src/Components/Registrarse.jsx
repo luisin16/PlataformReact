@@ -1,85 +1,84 @@
-import React from 'react'
-import './Registrarse.css'
-import Navbar from './Navbar'
-
+import React, { useState } from 'react';
+import Navbar from './Navbar';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Registrarse = () => {
-    const [nombre, setNombre] = useState('');
-    const [apellido, setApellido] = useState('');
-    const [correo, setCorreo] = useState('');
-    const [telefono, setTelefono] = useState('');
-    const [contrasena, setContrasena] = useState('');
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-  
-      setNombre('');
-      setApellido('');
-      setCorreo('');
-      setTelefono('');
-      setContrasena('');
-    };
-  
-    return (
-      <div>
-      <Navbar />
-      <div className="registro-container">
-        <h2>Formulario de Registro</h2>
-        <form onSubmit={handleSubmit} className="registro-form">
-          <label htmlFor="nombre">Nombre:</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            required
-          />
-  
-          <label htmlFor="apellido">Apellido:</label>
-          <input
-            type="text"
-            id="apellido"
-            name="apellido"
-            value={apellido}
-            onChange={(e) => setApellido(e.target.value)}
-            required
-          />
-  
-          <label htmlFor="correo">Correo:</label>
-          <input
-            type="email"
-            id="correo"
-            name="correo"
-            value={correo}
-            onChange={(e) => setCorreo(e.target.value)}
-            required
-          />
-  
-          <label htmlFor="telefono">Teléfono:</label>
-          <input
-            type="tel"
-            id="telefono"
-            name="telefono"
-            value={telefono}
-            onChange={(e) => setTelefono(e.target.value)}
-            required
-          />
-  
-          <label htmlFor="contrasena">Contraseña:</label>
-          <input
-            type="password"
-            id="contrasena"
-            name="contrasena"
-            value={contrasena}
-            onChange={(e) => setContrasena(e.target.value)}
-            required
-          />
-          <button type="submit">Registrarse</button>
-        </form>
-      </div>
-     </div>
-    );
+  const [users, setUsers] = useState({
+    name: '',
+    email: '',
+    password: '',
+    address: ''
+  });
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('http://localhost:8081/auth/add_users', users)
+      .then(result => {
+        if (result.data.Status) {
+          navigate('/adminlogin');
+        } else {
+          alert(result.data.Error);
+        }
+      })
+      .catch(err => console.log(err));
   };
-  
-  export default Registrarse
+
+  return (
+    <div>
+      <div className='d-flex justify-content-center align-items-center vh-95'>
+        <div className='p-3 rounded w-25 border'>
+          <h2>Ingresa tus datos:</h2>
+          <form className='row g-1' onSubmit={handleSubmit}>
+            <div className='col-12'>  
+              <label htmlFor="inputName">Nombre</label>      
+              <input
+                type='text'
+                className='form-control rounded-0'
+                id='inputName'
+                placeholder='Ingresa tu nombre'
+                onChange={(e) => setUsers({...users, name: e.target.value})}
+              />
+            </div>
+            <div className='col-12'>
+              <label htmlFor='inputEmail' className='form-label'>Correo electrónico</label>
+              <input
+                type='email'
+                className='form-control rounded-0'
+                id='inputEmail'
+                placeholder='Ingresa tu correo electrónico'
+                autoComplete='off'
+                onChange={(e) => setUsers({...users, email: e.target.value})}
+              />
+            </div>
+            <div className='col-12'>
+              <label htmlFor='inputPassword' className='form-label'>Contraseña</label>
+              <input
+                type='password'
+                className='form-control rounded-0'
+                id='inputPassword'
+                placeholder='Ingresa tu contraseña'
+                onChange={(e) => setUsers({...users, password: e.target.value})}
+              />
+            </div>
+            <div className='col-12'>
+              <label htmlFor='inputAddress' className='form-label'>Dirección</label>
+              <input
+                type='text'
+                className='form-control rounded-0'
+                id='inputAddress'
+                placeholder='Ingresa tu dirección'
+                autoComplete='off'
+                onChange={(e) => setUsers({...users, address: e.target.value})}
+              />
+            </div>
+           <button type='submit' className='btn btn-primary w-100'>Registrate</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Registrarse;

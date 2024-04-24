@@ -44,6 +44,10 @@ function Login() {
                     </div>
                     <button type='submit' className='btn btn-success w-100 rounded-0'> Log in</button>
                 </form>
+                <div className="mt-3">
+                <button type='button' className='btn btn-success' onClick={() => {navigate('/registrarse')}}>¿No tienes una cuenta?, Registrate</button>
+                </div>
+
             </div>
         </div>
     )
