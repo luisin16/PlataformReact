@@ -1,0 +1,85 @@
+/* About.css */
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .mission-section,
+  .vision-section {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .mission-image,
+  .vision-image {
+    max-width: 50%; /* Hacer las imágenes más pequeñas, ajusta según tus necesidades */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .mission-section h2,
+  .vision-section h2,
+  .mission-section p,
+  .vision-section p {
+    animation: fadeInText 1s ease-in-out; /* Agregamos animación al texto */
+    transition: color 0.3s ease-in-out; /* Agregamos transición de color al texto */
+  }
+  
+  .mission-section:hover h2,
+  .vision-section:hover h2,
+  .mission-section:hover p,
+  .vision-section:hover p {
+    color: #ff6347; /* Cambiamos el color al pasar el ratón por encima */
+  }
+  
+  .divider {
+    width: 50%;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+  }
+  
+  /* Utilize Bootstrap classes for improved styling */
+  .mission-section h2,
+  .vision-section h2 {
+    color: #007bff; /* Bootstrap primary color */
+  }
+  
+  .mission-section p,
+  .vision-section p {
+    color: #6c757d; /* Bootstrap secondary color */
+  }
+  
+  .mission-image,
+  .vision-image {
+    border: 2px solid #007bff; /* Border color same as primary color */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .mission-image:hover,
+  .vision-image:hover {
+    transform: scale(1.1); /* Zoom in on hover */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInText {
+    from {
+      opacity: 0;
+      transform: translateY(20px); /* Desplazar hacia arriba */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

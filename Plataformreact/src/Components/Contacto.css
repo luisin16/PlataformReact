@@ -1,0 +1,33 @@
+/* Contacto.css */
+.contacto-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .contacto-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .contacto-content h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+  
+  .contacto-content p {
+    margin-bottom: 10px;
+  }
+  
+  .contacto-content a {
+    color: #007bff;
+    margin-right: 10px;
+  }
+  
+  .contacto-content i {
+    font-size: 24px;
+  }
+  

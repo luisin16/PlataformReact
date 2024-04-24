@@ -23,7 +23,11 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <NavLink to="/dashboard" exact activeClassName="active">Inicio</NavLink>
+            <NavLink to="/about" activeClassName="active">Acerca de</NavLink>
+            <NavLink to="/categorias" activeClassName="active">Categorias</NavLink>
+            <NavLink to="/productos" activeClassName="active">Productos</NavLink>
             <NavLink to="/users" activeClassName="active">Usuarios</NavLink>
+            <NavLink to="/contacto" activeClassName="active">Contacto</NavLink>
             <NavLink activeClassName="active" onClick={handleCerrar}><span className='ms-2 d-done d-sm-inline'>Cerrar Sesion</span></NavLink>
         </nav>
     );

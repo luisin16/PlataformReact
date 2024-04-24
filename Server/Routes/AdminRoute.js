@@ -2,8 +2,6 @@ import express from "express";
 import con from "../utils/db.js";
 import jwt from "jsonwebtoken";
 import bcrypt, { hash } from "bcrypt";
-import multer from "multer";
-import path from "path";
 
 const router = express.Router();
 
@@ -25,6 +23,7 @@ router.post("/adminlogin",(req, res) => {
       }
     });
   });
+
 
   router.post('/add_users', (req, res) => {
     const sql = 'INSERT INTO users (`name`, `email`, `password`, `address`) VALUES (?)';
@@ -82,11 +81,10 @@ router.post("/adminlogin",(req, res) => {
       return res.json({Status: true, Result: result})
   })
 })
-
+  
 router.get('/cerrar', (req, res) => {
   res.clearCookie('token')
   return res.json({Status: true})
 })
-
 
 export { router as adminRouter };
